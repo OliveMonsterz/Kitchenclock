@@ -1,0 +1,228 @@
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/OrdinaryFont.css" rel="stylesheet">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/EmojiFontV1.css" rel="stylesheet">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/satangemoji1.css" rel="stylesheet">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/goodlyy07.css" rel="stylesheet">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/nidaemoji.css" rel="stylesheet">
+    <link href="https://olivemonsterz.github.io/Widget_Notion/fontmaewmedium.css" rel="stylesheet">
+       
+    <link href="https://fonts.cdnfonts.com/css/monday-banana" rel="stylesheet">
+
+  <title>KITCHEN Clock Widget</title>
+  
+  <style>
+    #clock-container {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      flex-grow: 1;
+      justify-content: end;
+      border: 1px solid #dadce0;
+      border-radius: 100px 100px 5px 5px;
+      background-color: #fff3e0/*#e8e9c9*/;
+      width: 190px; height: 250px;
+      /background: url(http://ssl.gstatic.com/ui/v1/disclosure/grey-disclosure-arrow-up-down.png) 100% no-repeat #f8f9fa;/
+    }
+    
+    #greet {
+      font-family: 'OrdinaryFont';
+      font-size: 19px;
+      text-align: left;
+      /*font-weight: bold;*/
+      color: #524e48/*#cfc9ac*/;
+      margin-bottom: -10px;
+      margin-left: 20px
+    }
+    
+    #emoji {
+      font-family: 'EmojiFontV1';
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #cdd3d7;
+      margin-top: 5px;
+      margin-bottom: 2px;
+    }  
+    
+    #container {
+      display: flex;
+      /*flex: initial;*/
+      flex-direction: row;
+      /*display: block;*/
+      text-align: center;
+     /* height: 54px;*/
+    }
+    
+    #clock {
+      font-family: 'Monday Banana', sans-serif;
+      font-size: 52px;
+      font-weight: bold;
+      color: #92695b;
+      text-shadow: 1px 1px 2px pink;
+      width: 160px;
+    }
+    
+    #containeris {
+      display: grid;
+      /*align-content: center;*/
+      width: 10px; height: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #icon {
+      font-family: 'satangemoji1';
+      font-size: 30px;
+      color: #70757a;      
+      text-align: center; 
+      /*align-self: end;*/
+      margin-top: 5px;
+    }
+    
+    #status {
+      font-family: 'goodlyy07';
+      display: inline-block;
+      /*text-align: start;*/
+      font-size: 38px;
+      color: #92695b;
+      margin-top: -10px;
+    }
+
+    #line {
+      font-family: 'nidaemoji';
+      font-size: 25px;
+      color: #9ca3a2;
+      text-align: center;
+      /*margin-bottom: -10px;*/
+      margin-top: -10px;
+      height: 20px;
+    }
+    
+    #day {
+      font-family: 'fontmaewmedium';
+      font-size: 25px;
+      color: #b19865;
+      text-align: center;
+      margin-top: -2px;
+      margin-bottom: -12px;
+    }
+    
+    #date {
+      font-family: 'fontmaewmedium';
+      font-size: 30px;
+      color: #b19865;
+      text-align: center;
+      margin-bottom: 7px;
+    }
+   </style>
+  
+ <script>
+    function updateClock() {
+    // TIME
+      var greet = " ";
+      var date = new Date();
+      var estDate = new Date(date.toLocaleString('en-US',{ timeZone: 'Asia/Bangkok' }));
+      var hours = twelveHour(estDate.getHours());
+      var minutes = estDate.getMinutes();
+      var period = " ";
+      var icon = " ";
+      
+      // Add leading zeros to hours
+      hours = hours < 10 ? '0' + hours : hours;
+      // Add leading zeros to minutes
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      
+      // Determine period (AM/PM) and convert to 12-hour format
+      if (estDate.getHours() >= 12) {
+					period += ' PM';
+				}
+				else {
+					period += ' AM';
+				}
+      
+      // Determine icon day and night
+      hrs = estDate.getHours();	
+        if (hrs >= 6 && hrs <= 18) {
+					icon = 'B';
+				} else {
+					icon = 'C';
+				}
+      
+      // Determine greet
+      hrs = estDate.getHours();	
+				if (hrs < 12) {
+					greet = 'Good Morning ๕';
+				} else if (hrs >= 12 && hrs <= 17) {
+					greet = 'Good Afternoon๔';
+				} else if (hrs >= 17 && hrs <= 24) {
+					greet = 'Good Evening ๗';
+				}
+      
+      // Format the time as HH:MM
+      var time = hours + ':' + minutes ;
+
+      // The clock element
+      document.getElementById('greet').innerHTML = greet;
+      // The clock element
+      document.getElementById('emoji').textContent = 'ABGK6MLPQIR';      
+      // The clock element
+      document.getElementById('clock').textContent = time;      
+      document.getElementById('status').innerHTML = period;
+      document.getElementById('icon').innerHTML = icon;
+      
+      // Line element
+      document.getElementById('line').textContent = 'aaaaaaaaaa';
+      
+    // DATE
+      var day = estDate.getDate();
+      var month = estDate.getMonth();
+      var daysOfWeek = ['x Sunday x', '^ Monday ^', '> Tuesday <', '+ Wednesday +', '- Thursday -', '~ Friday ~', '# Saturday #',];
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+      
+      // Format the date as full day name, full month name, DD, YYYY
+      var dayOfWeek = daysOfWeek[estDate.getDay()];
+      var monthName = months[month];
+      var dateFormatted = day + ' ' + monthName + ' ' + estDate.getFullYear();
+
+      // The date element
+      document.getElementById('day').innerHTML = dayOfWeek;      
+      document.getElementById('date').textContent = dateFormatted;
+      
+      // Determine convert to 12-hour format
+      function twelveHour(hour) {
+				if (hour > 12) {
+					return hour -= 12;
+				} else if (hour === 0) {
+					return hour = 12;
+				} else {
+					return hour;
+				}
+			}
+    }
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+  </script>
+</head>
+  
+<body>
+  <div id="clock-container">
+    <div id="greet"></div>
+    <div id="emoji"></div>
+    <div id="container">
+      <span id="clock"></span>
+      <div id="containeris">
+          <span id="icon"></span>
+          <span id="status"></span>
+      </div>
+    </div>
+    <div id="line"></div>
+    <div id="day"></div>
+    <div id="date"></div>
+  </div>
+
+
+
+</body>
+  
+</html>
